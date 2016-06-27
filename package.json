@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "npm run typings:install",
     "tsc": "$(npm bin)/tsc",
     "typings": "$(npm bin)/typings",
+    "typings:install": "npm run typings -- install",
     "build": "$(npm bin)/browserify app.js -o dist/bundle.js"
   },
   "author": "",
