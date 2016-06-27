@@ -1,0 +1,24 @@
+{
+  "name": "kurumajiro-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "$(npm bin)/tsc",
+    "typings": "$(npm bin)/typings"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "karma": "^1.1.0",
+    "react": "^15.1.0",
+    "rxjs": "^5.0.0-beta.9",
+    "typescript": "^1.8.10",
+    "typings": "^1.3.0"
+  },
+  "dependencies": {
+    "react": "^15.1.0",
+    "rxjs": "^5.0.0-beta.9"
+  }
+}
