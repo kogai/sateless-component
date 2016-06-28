@@ -11,8 +11,7 @@ interface ChildProps {
 }
 
 /** 状態を持たないコンポーネント */
-const MyChildComponent: StatelessComponent<ChildProps> = (props, _context) => {
-  const context = _context as Providers;
+const MyChildComponent: StatelessComponent<ChildProps> = (props, context) => {
   const myService = context[ProviderTokens.MyService] as MyService;
   return (<div>{ props.count } / { props.name } / { myService.getName() }</div>);
 };

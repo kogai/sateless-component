@@ -1,3 +1,5 @@
 *.js
+!karma.conf.js
 !webpack.config.js
 typings/
+coverage/

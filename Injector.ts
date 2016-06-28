@@ -1,6 +1,6 @@
 import { PropTypes, ReactPropTypes } from "react";
 
-class Provider {}
+abstract class Provider {}
 
 export interface Providers {
   [key: string]: Provider;
@@ -28,7 +28,7 @@ export class Injector {
 
 /** サンプルのクラス実装 */
 export class MyService implements Provider {
-  private serviceName: string = "Injectable service.";
+  private serviceName: string = "Injectable service?";
   getName() {
     return this.serviceName;
   }
