@@ -9,4 +9,5 @@
 typings/
 coverage/
 
-.tmp/
+tmp/*
+!tmp/.keep
