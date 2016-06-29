@@ -2,7 +2,7 @@ const webpack = require('webpack');
 
 const webpackConfig = {
   cache: !process.env.CI,
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   entry: {
     vendor: [
       'react',
@@ -14,7 +14,6 @@ const webpackConfig = {
     filename: "[name].bundle.js",
     path: './dist',
   },
-  devtool: "inline-source-map",
 
   resolve: {
     extensions: ['', '.ts', ".tsx", ".js"],
@@ -36,7 +35,20 @@ const webpackConfig = {
       },
     }),
     new webpack.optimize.DedupePlugin(),
-    // new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js"),
+    /*
+    new webpack.optimize.UglifyJsPlugin({
+      output: {
+        comments: false,
+      },
+      compress: {
+        unused: true,
+        dead_code: true,
+        warnings: false,
+        drop_console: true,
+      },
+    })
+    */
   ],
 };
 
