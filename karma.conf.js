@@ -45,7 +45,7 @@ module.exports = function(config) {
       noInfo: true,
     },
     coverageReporter: {
-      type : 'lcov',
+      type : 'cobertura',
       dir : isCI ? process.env.CIRCLE_ARTIFACTS : 'coverage',
     }
   })
