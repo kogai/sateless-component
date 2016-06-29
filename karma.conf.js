@@ -10,9 +10,9 @@ module.exports = function(config) {
     ],
     exclude: [],
     preprocessors: {
-      ['{,*/}*.spec.{ts,tsx}']: ['webpack'],
+      ['{,*/}*.spec.{ts,tsx}']: ['webpack', 'coverage'],
     },
-    reporters: ['mocha'],
+    reporters: ['mocha', 'coverage'],
     mochaReporter: {
       ignoreSkipped: true,
     },
@@ -29,6 +29,7 @@ module.exports = function(config) {
       require('karma-jasmine'),
       require('karma-mocha-reporter'),
       require('karma-phantomjs-launcher'),
+      require('karma-coverage'),
     ],
 
     webpack: {
