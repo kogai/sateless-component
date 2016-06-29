@@ -4,15 +4,31 @@ const webpackConfig = {
   cache: !process.env.CI,
   devtool: 'inline-source-map',
   entry: {
-    app: "./app",
+    vendor: [
+      'react',
+      'react-dom',
+    ],
+    app: "./src/app.tsx",
   },
   output: {
     filename: "[name].bundle.js",
     path: './dist',
   },
+  devtool: "inline-source-map",
+
   resolve: {
-    extensions: ['', '.js'],
+    extensions: ['', '.ts', ".tsx", ".js"],
   },
+
+  module: {
+    loaders: [
+      { test: /\.tsx?$/, loader: "ts-loader" }
+    ],
+    preLoaders: [
+      { test: /\.js$/, loader: "source-map-loader" }
+    ]
+  },
+
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {

@@ -20,7 +20,6 @@ MyChildComponent.contextTypes = {
   [ProviderTokens.MyService]: PropTypes.object
 };
 
-
 /** App */
 const inject = new Injector({
   [ProviderTokens.MyService]: new MyService(),
