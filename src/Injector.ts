@@ -1,10 +1,8 @@
 import { PropTypes, ReactPropTypes } from "react";
 import { assign } from "lodash";
 
-export abstract class Provider {}
-
 export interface Providers {
-  [key: string]: Provider;
+  [key: string]: any;
 }
 
 export interface PropTypeDictionary {
@@ -17,7 +15,8 @@ export class Injector {
   private tokens: string[];
   childContextTypes: PropTypeDictionary;
 
-  constructor(private providers: Providers) {
+  constructor(private providers: Providers, previewProviders?: Providers) {
+    this.providers = assign({}, previewProviders, providers);
     this.tokens = Object.keys(providers);
     this.childContextTypes = this.tokens.reduce(assignPropTypes, <PropTypeDictionary>{});
   }
@@ -28,7 +27,7 @@ export class Injector {
 }
 
 /** サンプルのクラス実装 */
-export class MyService implements Provider {
+export class MyService {
   private serviceName: string = "Injectable service?";
   getName() {
     return this.serviceName;
