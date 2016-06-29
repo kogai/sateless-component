@@ -1,0 +1,14 @@
+machine:
+  timezone:
+    Asia/Tokyo
+  node:
+    version: 5.11.0
+  environment:
+    NODE_PATH: ./
+    NODE_ENV: development
+
+deployment:
+  production:
+    branch: release
+    commands:
+      - npm run build:production

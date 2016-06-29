@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const webpackConfig = require('webpack.config');
+const isCI = process.env.CI;
 
 module.exports = function(config) {
   config.set({
@@ -18,11 +19,10 @@ module.exports = function(config) {
     },
     port: 9876,
     colors: true,
-    logLevel: config.LOG_INFO,
-    // logLevel: config.LOG_DEBUG,
-    autoWatch: true,
+    logLevel: isCI ? config.LOG_DEBUG : config.LOG_INFO,
     browsers: [/*'Chrome', 'Firefox', 'Opera', 'IE', 'Safari', */'PhantomJS'],
-    singleRun: false,
+    autoWatch: !isCI,
+    singleRun: isCI,
     concurrency: Infinity,
     plugins: [
       require('karma-webpack'),

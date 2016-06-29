@@ -19,7 +19,7 @@ export class Injector {
 
   constructor(private providers: Providers) {
     this.tokens = Object.keys(providers);
-    this.childContextTypes = this.tokens.reduce(assignPropTypes, {});
+    this.childContextTypes = this.tokens.reduce(assignPropTypes, <PropTypeDictionary>{});
   }
 
   getChildContext() {
