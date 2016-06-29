@@ -12,3 +12,8 @@ deployment:
     branch: release
     commands:
       - npm run build:production
+
+  report_coverage:
+    branch: /.*/
+    commands:
+      - curl -s -L https://gist.githubusercontent.com/u-minor/8cb27fa9c04163142ebd/raw/circleci-coverage-slack | bash -s
