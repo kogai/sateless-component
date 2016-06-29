@@ -1,16 +1,17 @@
 import { PropTypes, ReactPropTypes } from "react";
+import { assign } from "lodash";
 
-abstract class Provider {}
+export abstract class Provider {}
 
 export interface Providers {
   [key: string]: Provider;
 }
 
-interface PropTypeDictionary {
+export interface PropTypeDictionary {
   [key: string]: ReactPropTypes;
 }
 
-const assignPropTypes = (acc: PropTypeDictionary, token: string) => Object.assign({}, acc, { [token]: PropTypes.object });
+const assignPropTypes = (acc: PropTypeDictionary, token: string) => assign<{}, PropTypeDictionary>({}, acc, { [token]: PropTypes.object });
 
 export class Injector {
   private tokens: string[];

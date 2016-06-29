@@ -7,6 +7,7 @@ const webpackConfig = {
     vendor: [
       'react',
       'react-dom',
+      'lodash',
     ],
     app: "./src/app.tsx",
   },
@@ -36,20 +37,21 @@ const webpackConfig = {
     }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js"),
-    /*
-    new webpack.optimize.UglifyJsPlugin({
-      output: {
-        comments: false,
-      },
-      compress: {
-        unused: true,
-        dead_code: true,
-        warnings: false,
-        drop_console: true,
-      },
-    })
-    */
   ],
 };
+
+if (process.env.NODE_ENV === "production") {
+  webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin({
+    output: {
+      comments: false,
+    },
+    compress: {
+      unused: true,
+      dead_code: true,
+      warnings: false,
+      drop_console: true,
+    },
+  }));
+}
 
 module.exports = webpackConfig;

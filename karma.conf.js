@@ -1,50 +1,46 @@
+const webpack = require('webpack');
 const webpackConfig = require('webpack.config');
 
 module.exports = function(config) {
   config.set({
     basePath: '',
-    frameworks: ['mocha'],
+    frameworks: ['jasmine'],
     files: [
-      // 'node_modules/babel-polyfill/dist/polyfill.js',
-      '*.spec.js'
+      '{,*/}*.spec.{ts,tsx}',
     ],
-    exclude: [
-    ],
+    exclude: [],
     preprocessors: {
-      ['*.js']: ['webpack']
+      ['{,*/}*.spec.{ts,tsx}']: ['webpack'],
     },
-    reporters: ['mocha', 'coverage'],
+    reporters: ['mocha'],
     mochaReporter: {
       ignoreSkipped: true,
     },
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
+    // logLevel: config.LOG_DEBUG,
     autoWatch: true,
     browsers: [/*'Chrome', 'Firefox', 'Opera', 'IE', 'Safari', */'PhantomJS'],
     singleRun: false,
     concurrency: Infinity,
     plugins: [
       require('karma-webpack'),
-      require('karma-mocha'),
+      require('karma-jasmine'),
       require('karma-mocha-reporter'),
-      require('karma-coverage'),
       require('karma-phantomjs-launcher'),
     ],
-    webpack: webpackConfig,
-    /*
+
     webpack: {
       cache: webpackConfig.cache,
       devtool: webpackConfig.devtool,
-      resolve: webpackConfig.resolve,
-      plugins: webpackConfig.plugins,
       module: webpackConfig.module,
-      // node: {
-      //   fs: 'empty',
-      // },
+      resolve: webpackConfig.resolve,
+      plugins: webpackConfig.plugins
+        .filter((p) => !(p instanceof webpack.optimize.CommonsChunkPlugin)),
     },
-    */
     webpackMiddleware: {
+      quiet: true,
       noInfo: true,
     },
   })

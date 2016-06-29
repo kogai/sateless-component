@@ -1,5 +1,10 @@
 *.js
+*.js.map
+*.d.ts
+
+!references.d.ts
 !karma.conf.js
 !webpack.config.js
+
 typings/
 coverage/
